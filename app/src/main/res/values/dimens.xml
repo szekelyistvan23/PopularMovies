@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="poster_margin">36dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="distance_to_image">45dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="bigger_margin">16dp</dimen>
+</resources>
