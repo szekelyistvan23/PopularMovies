@@ -1,12 +1,15 @@
 package com.example.szekelyistvan.popularmovies.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.szekelyistvan.popularmovies.DetailActivity;
 import com.example.szekelyistvan.popularmovies.Model.Movie;
 import com.example.szekelyistvan.popularmovies.R;
 import com.squareup.picasso.Picasso;
@@ -21,6 +24,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     private Context mContext;
     private List<Movie> mMovies;
+    public static final String MOVIE_OBJECT = "movie_object";
 
     public MovieAdapter(Context context, List<Movie> movies) {
         mContext = context;
@@ -47,11 +51,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return mMovies.size();
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView mMoviePoster;
         public MovieViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mMoviePoster = itemView.findViewById(R.id.movie_thumbnail_image);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Bundle args = new Bundle();
+            int position = getAdapterPosition();
+            args.putParcelable(MOVIE_OBJECT, mMovies.get(position));
+            Intent intent = new Intent(mContext, DetailActivity.class);
+            intent.putExtras(args);
+            mContext.startActivity(intent);
         }
     }
 }
