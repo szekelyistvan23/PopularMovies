@@ -1,5 +1,6 @@
 package com.example.szekelyistvan.popularmovies;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -9,8 +10,6 @@ import android.widget.Toast;
 import com.example.szekelyistvan.popularmovies.Adapter.MovieAdapter;
 import com.example.szekelyistvan.popularmovies.Model.Movie;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
     private Movie mMovieDetail;
@@ -28,20 +27,19 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this, "No data available", Toast.LENGTH_SHORT).show();
             }
 
-            setUpAndLoadDataToUI();
+            setupActionBar();
+            setUpAndLoadDataToUi();
 
 
     }
-    /** Sets up the views and populates with data from an Movie object. */
-    private void setUpAndLoadDataToUI(){
+    /** Sets up the views and populates it with data from an Movie object. */
+    private void setUpAndLoadDataToUi(){
         TextView mVoteAverage;
         ImageView mPosterPath;
         TextView mOriginalTitle;
         ImageView mBackdropPath;
         TextView mOverview;
         TextView mReleaseDate;
-
-        setTitle(mMovieDetail.getTitle());
 
         mVoteAverage = findViewById(R.id.user_rating);
         mPosterPath = findViewById(R.id.poster_image);
@@ -65,5 +63,16 @@ public class DetailActivity extends AppCompatActivity {
         mOverview.setText(mMovieDetail.getOverview());
         mReleaseDate.setText(mMovieDetail.getReleaseDate());
 
+    }
+
+    /** Sets up a custom action bar, for correct display of movies's titles. */
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(R.layout.action_bar_title_layout);
+        }
+        TextView textViewActionBar = findViewById(R.id.action_bar_title);
+        textViewActionBar.setText(mMovieDetail.getTitle());
     }
 }
