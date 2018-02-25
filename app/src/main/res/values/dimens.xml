@@ -5,4 +5,8 @@
     <dimen name="distance_to_image">45dp</dimen>
     <dimen name="small_margin">8dp</dimen>
     <dimen name="bigger_margin">16dp</dimen>
+    <dimen name="background_image_height">200dp</dimen>
+    <dimen name="poster_image_width">68dp</dimen>
+    <dimen name="poster_image_height">128dp</dimen>
+    <dimen name="top_margin">80dp</dimen>
 </resources>
