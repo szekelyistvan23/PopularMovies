@@ -14,66 +14,67 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/match_constraint"
-            android:layout_height="wrap_content"
+            android:id="@+id/background_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/background_image_height"
             android:contentDescription="@string/movie_background_image"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/blank500"
-            />
+            app:srcCompat="@drawable/blank500" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/poster_margin"
-            android:layout_marginTop="@dimen/poster_margin"
+            android:id="@+id/poster_image"
+            android:layout_width="@dimen/poster_image_width"
+            android:layout_height="@dimen/poster_image_height"
+            android:layout_marginStart="@dimen/bigger_margin"
+            android:layout_marginTop="@dimen/top_margin"
             android:contentDescription="@string/movie_poster_image"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/background_image"
+            app:layout_constraintStart_toStartOf="@+id/background_image"
+            app:layout_constraintTop_toTopOf="@+id/background_image"
             app:srcCompat="@drawable/blank185" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/distance_to_image"
             android:text="@string/original_title_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/original_title"
+             />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
             android:text="@string/user_rating_title"
             android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/user_rating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+             />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
             android:text="@string/release_date_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/release_date"
+            />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="@dimen/bigger_margin"
             android:text="@string/overview_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/release_date" />
 
         <android.support.constraint.Barrier
             android:id="@+id/barrier"
@@ -86,41 +87,44 @@
 
         <TextView
             android:id="@+id/original_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            tools:text="@string/title_text"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/barrier" />
+            android:layout_marginTop="@dimen/bigger_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/background_image"
+            tools:text="@string/title_text" />
 
         <TextView
             android:id="@+id/user_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            tools:text="@string/rating_text"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/barrier" />
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/original_title"
+            tools:text="@string/rating_text" />
 
         <TextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
-            tools:text="@string/user_rating_text"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/barrier" />
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintTop_toBottomOf="@+id/user_rating"
+            tools:text="@string/user_rating_text" />
 
         <TextView
             android:id="@+id/overview"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_margin"
-            android:layout_marginStart="@dimen/small_margin"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView4"
             tools:text="@string/overview_text" />
 
     </android.support.constraint.ConstraintLayout>
