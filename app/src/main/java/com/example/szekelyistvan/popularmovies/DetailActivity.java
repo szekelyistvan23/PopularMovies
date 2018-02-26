@@ -11,8 +11,19 @@ import com.example.szekelyistvan.popularmovies.Adapter.MovieAdapter;
 import com.example.szekelyistvan.popularmovies.Model.Movie;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
     private Movie mMovieDetail;
+    @BindView(R.id.user_rating) TextView mVoteAverage;
+    @BindView(R.id.poster_image) ImageView mPosterPath;
+    @BindView(R.id.original_title) TextView mOriginalTitle;
+    @BindView(R.id.background_image) ImageView mBackdropPath;
+    @BindView(R.id.overview) TextView mOverview;
+    @BindView(R.id.release_date) TextView mReleaseDate;
+    @BindView(R.id.action_bar_title) TextView textViewActionBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +45,7 @@ public class DetailActivity extends AppCompatActivity {
     }
     /** Sets up the views and populates it with data from an Movie object. */
     private void setUpAndLoadDataToUi(){
-        TextView mVoteAverage;
-        ImageView mPosterPath;
-        TextView mOriginalTitle;
-        ImageView mBackdropPath;
-        TextView mOverview;
-        TextView mReleaseDate;
-
-        mVoteAverage = findViewById(R.id.user_rating);
-        mPosterPath = findViewById(R.id.poster_image);
-        mOriginalTitle = findViewById(R.id.original_title);
-        mBackdropPath = findViewById(R.id.background_image);
-        mOverview = findViewById(R.id.overview);
-        mReleaseDate = findViewById(R.id.release_date);
+        ButterKnife.bind(this);
 
         Picasso.with(this)
                 .load(mMovieDetail.getPosterPath())
@@ -72,7 +71,7 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setCustomView(R.layout.action_bar_title_layout);
         }
-        TextView textViewActionBar = findViewById(R.id.action_bar_title);
+        ButterKnife.bind(this);
         textViewActionBar.setText(mMovieDetail.getTitle());
     }
 }

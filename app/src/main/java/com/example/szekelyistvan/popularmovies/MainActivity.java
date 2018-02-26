@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,6 +28,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAGE_QUERY = "page";
     public static final String PAGE_QUERY_VALUE = "1";
     public static final double AVERAGE_VOTE_FALLBACK = 0.0;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view_main) RecyclerView mRecyclerView;
     private MovieAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Movie> moviesArray;
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Sets up a RecyclerView */
     private void setupRecyclerView(){
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
+        ButterKnife.bind(this);
         mRecyclerView.setHasFixedSize(true);
 
         //TODO Fix grid layout
@@ -150,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     defaultQuery = TOP_RATED;
                     downloadData(defaultQuery);
                     mAdapter.changeMovieData(moviesArray);
-                    setTitle(getString(R.string.top_rated_title));
+                    setTitle(getString(R.string.highest_rated_title));
                 }
                 return true;
             default:

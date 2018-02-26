@@ -12,10 +12,10 @@
     <string name="movie_poster_image">Movie poster image</string>
     <string name="sort">Sort</string>
     <string name="popular">Popular</string>
-    <string name="highest_rated">Highest rated</string>
-    <string name="wrong">Somenthing went wrong!</string>
-    <string name="already_popular">I have been already displaying popular movies</string>
-    <string name="already_top">I have been already displaying top rated movies</string>
+    <string name="highest_rated">Top rated</string>
+    <string name="wrong">Something went wrong!</string>
+    <string name="already_popular">Already displaying popular movies</string>
+    <string name="already_top">Already displaying top rated movies</string>
     <string name="popular_movies_title">Popular Movies</string>
-    <string name="top_rated_title">Top Rated Movies</string>
+    <string name="highest_rated_title">Top Rated Movies</string>
 </resources>
