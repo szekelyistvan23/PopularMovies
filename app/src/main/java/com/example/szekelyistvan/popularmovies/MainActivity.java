@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAGE_QUERY_VALUE = "1";
     public static final double AVERAGE_VOTE_FALLBACK = 0.0;
     @BindView(R.id.recycler_view_main) RecyclerView mRecyclerView;
+    @BindView(R.id.main_progress_bar) ProgressBar mMainProgressBar;
     private MovieAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<Movie> moviesArray;
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /** Downloads JSON data from the Internet */
     private void downloadData(@MovieListType String query){
+        ButterKnife.bind(this);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
         String url = buildStringForRequest(query);
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         if (moviesArray != null && !moviesArray.isEmpty()){
                             mAdapter = new MovieAdapter(MainActivity.this, moviesArray);
                             mRecyclerView.setAdapter(mAdapter);
+                            mMainProgressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 }, new Response.ErrorListener() {

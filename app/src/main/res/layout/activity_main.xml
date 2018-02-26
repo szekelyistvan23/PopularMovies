@@ -4,15 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.szekelyistvan.popularmovies.MainActivity">
+    android:layout_marginBottom="@dimen/bigger_margin"
+    >
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/main_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:visibility="visible"
+        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_progress_bar"
+        android:layout_marginStart="@dimen/bigger_margin"
+        android:layout_marginEnd="@dimen/bigger_margin"
+        android:layout_marginBottom="@dimen/bigger_margin"
+        />
 
 </android.support.constraint.ConstraintLayout>
