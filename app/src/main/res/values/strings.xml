@@ -18,4 +18,5 @@
     <string name="already_top">Already displaying top rated movies</string>
     <string name="popular_movies_title">Popular Movies</string>
     <string name="highest_rated_title">Top Rated Movies</string>
+    <string name="no_internet">No Internet connection!</string>
 </resources>

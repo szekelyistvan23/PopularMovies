@@ -1,5 +1,8 @@
 package com.example.szekelyistvan.popularmovies;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
@@ -77,8 +80,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupRecyclerView();
-        downloadData(defaultQuery);
-
+        if (haveNetworkConnection()) {
+            downloadData(defaultQuery);
+        } else {
+            finish();
+            showToast(getString(R.string.no_internet));
+        }
     }
 
     /** Sets up a RecyclerView */
@@ -136,23 +143,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sortPopular:
-                if (defaultQuery.equals(POPULAR)) {
-                    showToast(getString(R.string.already_popular));
+                if (haveNetworkConnection()) {
+                    sortPopular();
                 } else {
-                    defaultQuery = POPULAR;
-                    downloadData(defaultQuery);
-                    mAdapter.changeMovieData(moviesArray);
-                    setTitle(getString(R.string.popular_movies_title));
+                    showToast(getString(R.string.no_internet));
                 }
                 return true;
             case R.id.sortTopRated:
-                if (defaultQuery.equals(TOP_RATED)) {
-                    showToast(getString(R.string.already_top));
+                if (haveNetworkConnection()) {
+                    sortTopRated();
                 } else {
-                    defaultQuery = TOP_RATED;
-                    downloadData(defaultQuery);
-                    mAdapter.changeMovieData(moviesArray);
-                    setTitle(getString(R.string.highest_rated_title));
+                    showToast(getString(R.string.no_internet));
                 }
                 return true;
             default:
@@ -175,7 +176,47 @@ public class MainActivity extends AppCompatActivity {
             return "";
         }
     }
-    /** Displays a toast message. */
+
+    /** Checks the state of the network connection. */
+    public boolean haveNetworkConnection() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null) {
+            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI && networkInfo.isConnected()) {
+                    return true;
+            } else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE && networkInfo.isConnected()) {
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    /** Displays the popular movies list. */
+    private void sortPopular(){
+        if (defaultQuery.equals(POPULAR)) {
+            showToast(getString(R.string.already_popular));
+        } else {
+            defaultQuery = POPULAR;
+            downloadData(defaultQuery);
+            mAdapter.changeMovieData(moviesArray);
+            setTitle(getString(R.string.popular_movies_title));
+        }
+    }
+
+    /** Displays the top rated movies list. */
+    private void sortTopRated(){
+        if (defaultQuery.equals(TOP_RATED)) {
+            showToast(getString(R.string.already_top));
+        } else {
+            defaultQuery = TOP_RATED;
+            downloadData(defaultQuery);
+            mAdapter.changeMovieData(moviesArray);
+            setTitle(getString(R.string.highest_rated_title));
+        }
+    }
+
+    /** Displays a toast message after canceling the previous one. */
     public void showToast(String text){
         if (sortToast != null){
             sortToast.cancel();
