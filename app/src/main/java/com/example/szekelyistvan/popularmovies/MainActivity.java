@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     private String setImageSize (String imageSize, String imagePath){
         StringBuilder stringBuilder = new StringBuilder();
 
-        if (imagePath!=null && imagePath !=null){
+        if (imageSize!=null && imagePath !=null){
             stringBuilder.append(IMAGE_BASE_URL);
             stringBuilder.append(imageSize);
             stringBuilder.append(imagePath);
