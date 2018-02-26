@@ -24,6 +24,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/blank500" />
 
+        <ProgressBar
+            android:id="@+id/detailProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="visible"
+            style="?android:attr/spinnerMode"
+            app:layout_constraintBottom_toBottomOf="@id/background_image"
+            app:layout_constraintEnd_toEndOf="@id/background_image"
+            app:layout_constraintStart_toStartOf="@id/background_image"
+            app:layout_constraintTop_toTopOf="@id/background_image" />
+
         <ImageView
             android:id="@+id/poster_image"
             android:layout_width="@dimen/poster_image_width"

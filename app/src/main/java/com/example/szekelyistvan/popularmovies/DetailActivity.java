@@ -3,12 +3,15 @@ package com.example.szekelyistvan.popularmovies;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.szekelyistvan.popularmovies.Adapter.MovieAdapter;
 import com.example.szekelyistvan.popularmovies.Model.Movie;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -22,8 +25,8 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.background_image) ImageView mBackdropPath;
     @BindView(R.id.overview) TextView mOverview;
     @BindView(R.id.release_date) TextView mReleaseDate;
-    @BindView(R.id.action_bar_title) TextView textViewActionBar;
-
+    @BindView(R.id.action_bar_title) TextView mTextViewActionBar;
+    @BindView(R.id.detailProgressBar) ProgressBar mDetailProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,17 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(mMovieDetail.getBackdropPath())
                 .placeholder(R.drawable.blank500)
-                .into(mBackdropPath);
+                .into(mBackdropPath, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        mDetailProgressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        mDetailProgressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
 
         mVoteAverage.setText(String.valueOf(mMovieDetail.getVoteAverage()));
         mOriginalTitle.setText(mMovieDetail.getOriginalTitle());
@@ -72,6 +85,6 @@ public class DetailActivity extends AppCompatActivity {
             actionBar.setCustomView(R.layout.action_bar_title_layout);
         }
         ButterKnife.bind(this);
-        textViewActionBar.setText(mMovieDetail.getTitle());
+        mTextViewActionBar.setText(mMovieDetail.getTitle());
     }
 }
