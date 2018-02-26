@@ -74,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
     public @interface MovieListType {
     }
 
+    @StringDef({IMAGE_SIZE_W185, IMAGE_SIZE_W185})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface MovieImageSize {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
             movieResult.setTitle(extractMovieData.optString(JSON_TITLE));
             movieResult.setPosterPath(setImageSize(IMAGE_SIZE_W185, extractMovieData.optString(JSON_POSTER_PATH)));
             movieResult.setOriginalTitle(extractMovieData.optString(JSON_ORIGINAL_TITLE));
-            movieResult.setBackdropPath(setImageSize(IMAGE_SIZE_W500, extractMovieData.optString(JSON_BACKDROP_PATH)));
+            movieResult.setBackdropPath(setImageSize((String)IMAGE_SIZE_W500, extractMovieData.optString(JSON_BACKDROP_PATH)));
             movieResult.setOverview(extractMovieData.optString(JSON_OVERVIEW));
             movieResult.setReleaseDate(extractMovieData.optString(JSON_RELEASE_DATE));
 
@@ -253,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** Sets the image size for an image to be downloaded with Picasso */
-    private String setImageSize (String imageSize, String imagePath){
+    private String setImageSize (@MovieImageSize String imageSize, String imagePath){
         StringBuilder stringBuilder = new StringBuilder();
 
         if (imageSize!=null && imagePath !=null){
