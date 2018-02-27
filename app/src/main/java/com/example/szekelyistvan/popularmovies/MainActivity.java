@@ -1,6 +1,7 @@
 package com.example.szekelyistvan.popularmovies;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAGE_QUERY = "page";
     public static final String PAGE_QUERY_VALUE = "1";
     public static final double AVERAGE_VOTE_FALLBACK = 0.0;
+    public static final int DEFAULT_IMAGE_WIDTH = 185;
     @BindView(R.id.recycler_view_main) RecyclerView mRecyclerView;
     @BindView(R.id.main_progress_bar) ProgressBar mMainProgressBar;
     private MovieAdapter mAdapter;
@@ -102,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //TODO Fix grid layout
-        mLayoutManager = new GridLayoutManager(this, 2);
+        mLayoutManager = new GridLayoutManager(this, autoSpan());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         sortToast.show();
     }
 
-    /** Parses JSONArroy to a Movie Array */
+    /** Parses JSONArray to a Movie Array */
     private List<Movie> jsonToMovieArray(String jsonResponse) throws JSONException{
         List<Movie> resultArray = new ArrayList<>();
         Movie movieResult = new Movie();
@@ -260,6 +263,24 @@ public class MainActivity extends AppCompatActivity {
             movieResult = new Movie();
         }
         return resultArray;
+    }
+
+    /** Calculates the number of pictures to be displayed in a row based on the screen width. */
+    private int autoSpan(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.widthPixels;
+
+        int orientation = this.getResources().getConfiguration().orientation;
+
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            return (int) height / DEFAULT_IMAGE_WIDTH;
+        } else if (orientation == Configuration.ORIENTATION_PORTRAIT){
+            return (int) width / DEFAULT_IMAGE_WIDTH;
+        }
+        return 1;
     }
 
     /** Sets the image size for an image to be downloaded with Picasso */
