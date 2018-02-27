@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Szekely Istvan on 22.02.2018.
+ * This class is used to pass data between activities.
  */
 
 

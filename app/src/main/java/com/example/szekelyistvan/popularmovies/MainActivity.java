@@ -1,4 +1,23 @@
+/**Copyright 2018 Szekely Istvan
+*
+*        Licensed under the Apache License, Version 2.0 (the "License");
+*        you may not use this file except in compliance with the License.
+*        You may obtain a copy of the License at
+*
+*        http://www.apache.org/licenses/LICENSE-2.0
+*
+*        Unless required by applicable law or agreed to in writing, software
+*        distributed under the License is distributed on an "AS IS" BASIS,
+*        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*        See the License for the specific language governing permissions and
+*        limitations under the License
+ */
+
 package com.example.szekelyistvan.popularmovies;
+
+/**
+ * Displays a RecyclerView with popular or top rated movies.
+ */
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -41,7 +60,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    /* Put your own api key from themoviedb.org to gradle.properties in the following form
+    /** Put your own api key from themoviedb.org to gradle.properties in the following form
     API_KEY = "your api key goes here" */
     private static final String API_KEY = BuildConfig.API_KEY;
     public static final String JSON_ARRAY_RESULTS = "results";
@@ -99,18 +118,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Sets up a RecyclerView */
+    /** Sets up a RecyclerView. */
     private void setupRecyclerView(){
+    // Butterknife is distributed under Apache License, Version 2.0
+
         ButterKnife.bind(this);
         mRecyclerView.setHasFixedSize(true);
 
-        //TODO Fix grid layout
         mLayoutManager = new GridLayoutManager(this, autoSpan());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
 
     }
-    /** Downloads JSON data from the Internet */
+    /** Downloads JSON data from the Internet. */
     private void downloadData(@MovieListType String query){
         ButterKnife.bind(this);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
@@ -144,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
-
+    /** Loads the custom menu. */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -152,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /** Implements custom menu with two elements. */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -174,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         }
         }
 
-    /** Builds a String for an Internet request based on the users request. */
+    /** Builds a String for an Internet request based on the user's choice. */
     private String buildStringForRequest(@MovieListType String queryType){
 
         if (queryType != null) {
@@ -238,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         sortToast.show();
     }
 
-    /** Parses JSONArray to a Movie Array */
+    /** Parses JSONArray to a Movie Array. */
     private List<Movie> jsonToMovieArray(String jsonResponse) throws JSONException{
         List<Movie> resultArray = new ArrayList<>();
         Movie movieResult = new Movie();
@@ -283,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
         return 1;
     }
 
-    /** Sets the image size for an image to be downloaded with Picasso */
+    /** Sets the image size for an image to be downloaded with Picasso. */
     private String setImageSize (@MovieImageSize String imageSize, String imagePath){
         StringBuilder stringBuilder = new StringBuilder();
 
