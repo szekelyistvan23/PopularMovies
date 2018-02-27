@@ -46,6 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Picasso.with(mContext)
                 .load(mMovies.get(position).getPosterPath())
                 .placeholder(R.drawable.blank185)
+                .error(R.drawable.error185)
                 .into(holder.mMoviePoster);
     }
 

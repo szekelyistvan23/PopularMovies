@@ -53,11 +53,13 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(mMovieDetail.getPosterPath())
                 .placeholder(R.drawable.blank185)
+                .error(R.drawable.error185)
                 .into(mPosterPath);
 
         Picasso.with(this)
                 .load(mMovieDetail.getBackdropPath())
                 .placeholder(R.drawable.blank500)
+                .error(R.drawable.error500)
                 .into(mBackdropPath, new Callback() {
                     @Override
                     public void onSuccess() {
