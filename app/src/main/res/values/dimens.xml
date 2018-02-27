@@ -9,4 +9,5 @@
     <dimen name="poster_image_width">68dp</dimen>
     <dimen name="poster_image_height">128dp</dimen>
     <dimen name="top_margin">80dp</dimen>
+    <dimen name="text_size">15sp</dimen>
 </resources>

@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/bigger_margin"
+    android:paddingBottom="@dimen/bigger_margin"
+    android:background="@color/backgroundColor"
     >
 
     <ProgressBar
         android:id="@+id/main_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:visibility="visible"
-        android:indeterminate="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
+        android:indeterminate="true"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,12 +23,11 @@
         android:id="@+id/recycler_view_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_progress_bar"
-        android:layout_marginStart="@dimen/bigger_margin"
         android:layout_marginEnd="@dimen/bigger_margin"
-        android:layout_marginBottom="@dimen/bigger_margin"
-        />
+        android:layout_marginStart="@dimen/bigger_margin"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_progress_bar" />
 
 </android.support.constraint.ConstraintLayout>

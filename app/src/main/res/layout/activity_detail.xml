@@ -2,7 +2,8 @@
 <ScrollView
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/bigger_margin"
+    android:padding="@dimen/bigger_margin"
+    android:background="@color/backgroundColor"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +12,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
             android:id="@+id/background_image"
@@ -103,6 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="@dimen/bigger_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/background_image"
@@ -114,6 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="@dimen/small_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_size"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/original_title"
             tools:text="@string/rating_text" />
@@ -124,6 +130,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_margin"
             android:layout_marginTop="@dimen/small_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_size"
             app:layout_constraintStart_toEndOf="@+id/barrier"
             app:layout_constraintTop_toBottomOf="@+id/user_rating"
             tools:text="@string/user_rating_text" />
@@ -133,6 +141,8 @@
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_margin"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
