@@ -14,5 +14,9 @@ Build a simple movies app that communicates with the internet and provides a res
 
 To run the app you need an API key from themoviedb.org, more about it at the beginning of MainActivity.java.
 
+## Screenshots
+
+![Screenshot](popular.gif)
+
 
 
